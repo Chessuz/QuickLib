@@ -49,19 +49,6 @@ type
   end;
 
   {$IFDEF FPC}
-  TStringArray = TArray<string>;
-  {$ENDIF}
-
-  TStringArrayHelper = record Helper for {$IFNDEF FPC}TArray<string>{$ELSE}TStringArray{$ENDIF}
-    function Count : Integer;
-    procedure Add(const aValue : string);
-    procedure Insert(const aValue : string; aIndex : Integer);
-    procedure Remove(aIndex : Integer);
-    function Contains(const aItem : string) : Boolean;
-    function IndexOf(const aItem : string) : Integer;
-  end;
-
-  {$IFDEF FPC}
   TIntegerArray = TArray<Integer>;
   {$ENDIF}
 
@@ -72,6 +59,20 @@ type
     procedure Remove(aIndex : Integer);
     function Contains(aItem : Integer) : Boolean;
     function IndexOf(aItem : Integer) : Integer;
+  end;
+
+  {$IFDEF FPC}
+  TStringArray = TArray<string>;
+  {$ENDIF}
+
+
+  TStringArrayHelper = record Helper for {$IFNDEF FPC}TArray<string>{$ELSE}TStringArray{$ENDIF}
+    function Count : Integer;
+    procedure Add(const aValue : string);
+    procedure Insert(const aValue : string; aIndex : Integer);
+    procedure Remove(aIndex : Integer);
+    function Contains(const aItem : string) : Boolean;
+    function IndexOf(const aItem : string) : Integer;
   end;
 
 

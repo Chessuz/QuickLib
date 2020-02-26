@@ -3,6 +3,7 @@ unit Main;
 interface
 
 uses
+Quick.Config.Json,
   Winapi.Windows,
   Winapi.Messages,
   System.SysUtils,
@@ -13,8 +14,8 @@ uses
   Vcl.Forms,
   Vcl.Dialogs,
   Vcl.StdCtrls,
-  System.Generics.Collections,
-  Quick.Config.Json;
+  System.Generics.Collections
+  ;
 
 type
 

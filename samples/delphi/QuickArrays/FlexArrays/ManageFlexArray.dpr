@@ -31,9 +31,9 @@ begin
       user.Name := 'Joe';
       xarThings.Add(user);
 
-      cout('Integer Item = %d',[xarThings[0].AsInteger],etInfo);
+      cout('Integer Item = %d',[xarThings[0].AsInteger],etWarning);
       cout('String Item = %s',[xarThings[1].AsString],etInfo);
-      cout('Record Item = %s',[TUser(xarThings[2]).Name],etInfo);
+      cout('Record Item = %s',[TUser(xarThings[2]).Name],etError);
     finally
       user.Free;
     end;

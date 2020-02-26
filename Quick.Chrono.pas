@@ -31,7 +31,7 @@ unit Quick.Chrono;
 
 interface
 
-{$HPPEMIT LEGACYHPP}
+
 
 {$i QuickLib.inc}
 

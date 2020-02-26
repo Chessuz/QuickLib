@@ -383,11 +383,15 @@ begin
         begin
           //rValue := DeserializeType(aObject,rField.FieldType.TypeKind,rField.FieldType.Handle,member.ToJson);
           //avoid return unicode escaped chars if string
+
+
+
+
           if rField.FieldType.TypeKind in [tkString, tkLString, tkWString, tkUString] then
             {$IFDEF DELPHIRX10_UP}
             rValue := DeserializeType(aObject,rField.FieldType.TypeKind,rField.FieldType.Handle,TJsonValue(member).value)
             {$ELSE}
-            rValue := DeserializeType(aObject,rField.FieldType.TypeKind,rField.FieldType.Handle,member.JsonString.ToString)
+            rValue := DeserializeType(aObject,rField.FieldType.TypeKind,rField.FieldType.Handle, member.ToString)
             {$ENDIF}
             else rValue := DeserializeType(aObject,rField.FieldType.TypeKind,rField.FieldType.Handle,member.ToJSON);
         end;
@@ -677,7 +681,7 @@ begin
             {$IFDEF DELPHIRX10_UP}
             rValue := DeserializeType(aObject,aProperty.PropertyType.TypeKind,aProperty.GetValue(aObject).TypeInfo,TJsonValue(member).value)
             {$ELSE}
-            rValue := DeserializeType(aObject,aProperty.PropertyType.TypeKind,aProperty.GetValue(aObject).TypeInfo,member.JsonString.ToString)
+            rValue := DeserializeType(aObject,aProperty.PropertyType.TypeKind,aProperty.GetValue(aObject).TypeInfo,member.ToString)
             {$ENDIF}
           else rValue := DeserializeType(aObject,aProperty.PropertyType.TypeKind,aProperty.GetValue(aObject).TypeInfo,member.ToJSON);
           {$ELSE}

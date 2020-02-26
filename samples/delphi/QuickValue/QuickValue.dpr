@@ -1,3 +1,6 @@
+// JCL_DEBUG_EXPERT_GENERATEJDBG OFF
+// JCL_DEBUG_EXPERT_INSERTJDBG OFF
+// JCL_DEBUG_EXPERT_DELETEMAPFILE OFF
 program QuickValue;
 
 {$APPTYPE CONSOLE}
@@ -42,17 +45,21 @@ var
   serializer : TJsonSerializer;
   arr : array of variant;
   parr : Pointer;
+  a:variant;
+  b:String;
+  c:TValue;
 begin
 
   serializer := TJsonSerializer.Create(TSerializeLevel.slPublicProperty);
   if VarIsArray(aValue) then
   begin
     parr := VarArrayLock(aValue);
-    var a := VarArrayGet(aValue,[1]);
-    var b := VarTypeAsText(VarType(a) and VarTypeMask);
+    a := VarArrayGet(aValue,[1]);
+    b := VarTypeAsText(VarType(a) and VarTypeMask);
     SetLength(arr,VarArrayHighBound(aValue,1) + 1);
     arr := [aValue];
-    Result := serializer.ArrayToJson(TValue.FromVariant(aValue));
+    c := TValue.FromVariant(aValue);
+//    Result := serializer.ArrayToJson<variant>(  );
   end;
 end;
 
@@ -60,6 +67,8 @@ function Test2(aValue : Pointer) : string;
 var
   arr : TMyArray;
   parr : Pointer;
+  a: TObject;
+  b:String;
 begin
   //if VarIsArray(aValue) then
   begin
@@ -68,8 +77,8 @@ begin
     parr := aValue;
     SetLength(arr,2);
     arr := PMyArray(@parr)^;
-    var a := arr[0];
-    var b := TMyObject(a).Name;
+    a := arr[0];
+    b := TMyObject(a).Name;
   end;
 end;
 
@@ -77,7 +86,7 @@ var
   obj : TMyObject;
   arr2 : TArray<TMyObject>;
   vari : Variant;
-
+  a:String;
 begin
   try
 
@@ -93,7 +102,7 @@ begin
 
     arr := ['item1','item2','item3','item4'];
     flexvalue := arr;
-    var a := Test(arr);
+    a := Test(arr);
     SetLength(arr,0);
     arr := TArray<string>(flexvalue.AsPointer);
     coutFmt('arr[1]=%s',[arr[1]],etInfo);

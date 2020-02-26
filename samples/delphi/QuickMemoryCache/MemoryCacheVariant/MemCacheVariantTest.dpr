@@ -1,3 +1,6 @@
+// JCL_DEBUG_EXPERT_GENERATEJDBG OFF
+// JCL_DEBUG_EXPERT_INSERTJDBG OFF
+// JCL_DEBUG_EXPERT_DELETEMAPFILE OFF
 program MemCacheVariantTest;
 
 {$APPTYPE CONSOLE}
@@ -125,9 +128,13 @@ begin
     Inc(n);
     if n < 9 then
     begin
+
+
       backgroundtasks.AddTask(procedure(task : ITask)
                            var a : string;
                           begin
+
+                            coutFmt('backgroundtasks.AddTask', [], etSuccess);
                             if not cache.TryGetValue('1',a) then
                             begin
                               coutFmt('Value %d not in cache or expired',[1],etWarning);
@@ -140,6 +147,7 @@ begin
     else
     begin
       n := 0;
+
       backgroundtasks.AddTask(procedure(task : ITask)
                            var a : string;
                           begin
